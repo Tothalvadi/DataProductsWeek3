@@ -1,0 +1,35 @@
+---
+title: "My Plotly plot!"
+author: "Tom van Dienst"
+date: "November 29, 2016"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+We'll be using the quakes dataset to show the location and depth of earthquakes. Severity in color. 
+
+```{r message=FALSE}
+library(plotly)
+d <- quakes
+
+x <- list(title="Lat", font = "f")
+y <- list(title = "Long", font = "f")
+z <- list(title = "Depth", font = "f")
+
+plot_ly( x = d$lat
+         , y = d$long
+         , z = (d$depth*-1)
+         , type="scatter3d"
+         , mode="markers"
+         , sizes = c(20,100)
+         , color=d$mag
+         , size=d$mag
+         , colors ="YlOrRd") %>%
+    layout(title = "Earthquakes in Fiji"
+           , scene = list( xaxis = x, yaxis = y, zaxis = z))
+
+```
