@@ -1,18 +1,18 @@
 ---
-title: "My Plotly plot!"
+title: "Plotly presentation"
 author: "Tom van Dienst"
-date: "November 29, 2016"
-output: html_document
+date: "1 december 2016"
+output: ioslides_presentation
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE)
 ```
 
-
+----
 We'll be using the quakes dataset to show the location and depth of earthquakes. Severity in color. 
 
-```{r message=FALSE}
+```{r message=FALSE, echo=FALSE, warning=FALSE}
 library(plotly)
 d <- quakes
 
@@ -26,7 +26,7 @@ plot_ly( x = d$lat
          , type="scatter3d"
          , mode="markers"
          , sizes = c(20,100)
-         , color=d$stations
+         , color=d$mag
          , size=d$mag
          , colors ="YlOrRd") %>%
     layout(title = "Earthquakes in Fiji"
